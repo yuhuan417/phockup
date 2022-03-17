@@ -241,6 +241,14 @@ Specify the output directory where your photos should be exported.
     )
 
     parser.add_argument(
+        'sub_dir',
+        metavar='SUBDIR',
+        help="""\
+Specify the output sub-directory where your photos should be exported.
+""",
+    )
+
+    parser.add_argument(
         '--file-type',
         type=str,
         choices=['image', 'video', 'media'],
@@ -294,6 +302,7 @@ def main(options):
     return Phockup(
         options.input_dir,
         options.output_dir,
+        options.sub_dir,
         dir_format=options.date,
         move=options.move,
         link=options.link,

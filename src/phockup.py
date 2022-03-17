@@ -23,7 +23,7 @@ class Phockup():
     DEFAULT_DIR_FORMAT = ['%Y', '%m', '%d']
     DEFAULT_NO_DATE_DIRECTORY = "unknown"
 
-    def __init__(self, input_dir, output_dir, **args):
+    def __init__(self, input_dir, output_dir, sub_dir, **args):
         start_time = time.time()
         self.files_processed = 0
         self.duplicates_found = 0
@@ -40,6 +40,7 @@ class Phockup():
 
         self.input_dir = input_dir
         self.output_dir = output_dir
+        self.sub_dir = sub_dir
         self.no_date_dir = args.get('no_date_dir') or Phockup.DEFAULT_NO_DATE_DIRECTORY
         self.dir_format = args.get('dir_format') or os.path.sep.join(Phockup.DEFAULT_DIR_FORMAT)
         self.move = args.get('move', False)
@@ -189,7 +190,8 @@ class Phockup():
             path = [self.output_dir, date['date'].date().strftime(self.dir_format)]
         except (TypeError, ValueError):
             path = [self.output_dir, self.no_date_dir]
-
+        if self.sub_dir:
+            path.append(self, self.sub_dir)
         fullpath = os.path.sep.join(path)
 
         if not os.path.isdir(fullpath) and not self.dry_run:
