@@ -191,7 +191,7 @@ class Phockup():
         except (TypeError, ValueError):
             path = [self.output_dir, self.no_date_dir]
         if self.sub_dir:
-            path.append(self, self.sub_dir)
+            path.append(self.sub_dir)
         fullpath = os.path.sep.join(path)
 
         if not os.path.isdir(fullpath) and not self.dry_run:

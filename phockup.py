@@ -241,8 +241,9 @@ Specify the output directory where your photos should be exported.
     )
 
     parser.add_argument(
-        'sub_dir',
-        metavar='SUBDIR',
+        '--sub_dir',
+        type=str,
+        action='store'
         help="""\
 Specify the output sub-directory where your photos should be exported.
 """,
