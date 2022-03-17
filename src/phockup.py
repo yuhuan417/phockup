@@ -258,11 +258,12 @@ class Phockup():
         target_file = target_file_path
 
         while True:
-            if self.file_type == "media" and target_file_type is None:
-                progress = f"{progress} => skipped, file is '{target_file_type}' \
-but looking for '{self.file_type}'"
-                logger.info(progress)
-                break
+            if self.file_type == "media":
+                if target_file_type is None:
+                    progress = f"{progress} => skipped, file is '{target_file_type}' \
+    but looking for '{self.file_type}'"
+                    logger.info(progress)
+                    break
             elif self.file_type is not None \
                     and self.file_type != target_file_type:
                 progress = f"{progress} => skipped, file is '{target_file_type}' \
